@@ -1,5 +1,5 @@
 {
-    "name": "AtServer/DB",
+    "name": "at_server/db",
     "description": "DB",
     "license": "MIT",
     "type": "library",

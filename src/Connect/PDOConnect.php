@@ -10,7 +10,6 @@ namespace AtServer\Connect;
 
 use AtServer\ErrorHandler;
 use AtServer\DBException;
-use Log\Log;
 
 
 class PDOConnect {
@@ -99,6 +98,8 @@ class PDOConnect {
 		}
 		$this->prefix = $prefix;
 		$dsn          = "mysql:host={$host};port={$port}";
+		\AtServer\Log::log($this->dbName);
+
 		if ( $this->dbName ) {
 			$dbName = $this->dbName;
 		}

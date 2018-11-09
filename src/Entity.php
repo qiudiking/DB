@@ -379,22 +379,11 @@ abstract class Entity
      * @return bool
      * @throws \Exception
      */
-    public function setDnc( $field , $step = 1 )
+    public function setRnc( $field , $step = 1 )
     {
-        return $this->_container->setDnc( $field , $step );
+        return $this->_container->setRnc( $field , $step );
     }
 
-    /**
-     * 按条件查数量
-     *
-     * @param array $where
-     *
-     * @return mixed
-     */
-    public function count( $where = [] )
-    {
-        return $this->_container->count( $where );
-    }
 
 
 	/**

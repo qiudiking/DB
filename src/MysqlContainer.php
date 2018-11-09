@@ -353,26 +353,7 @@ class MysqlContainer implements \SplSubject {
 		$this->model->setTable( $this->_entity->getTableName() );
 	}
 
-	/**
-	 * 获取数据，并填充到实体对象中
-	 *
-	 * @param \AtServer\Mongodb\MongodbEntity|null $entity
-	 *
-	 * @return bool
-	 */
-	function getData( MongodbEntity &$entity = null ) {
 
-		$entity && $this->_entity = $entity;
-		if ( $this->_entity->_id ) {
-			$res = $this->getModel()->getByPK( $this->_entity->_id );
-			if ( $this->_entity->setData( $res ) ) {
-				return true;
-			}
-		}
-
-		return false;
-
-	}
 
 	/**
 	 * 获取所有数据
@@ -453,8 +434,8 @@ class MysqlContainer implements \SplSubject {
 	 *
 	 * @return bool
 	 */
-	public function setDnc( $field, $step = 1 ) {
-		$res = $this->getModel()->where( [ $this->getPK() => $this->getPKV() ] )->setInc( $field, $step );
+	public function setRnc( $field, $step = 1 ) {
+		$res = $this->getModel()->where( [ $this->getPK() => $this->getPKV() ] )->setRnc( $field, $step );
 		if ( $res ) {
 			$this->notify();
 		}

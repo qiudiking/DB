@@ -3,8 +3,7 @@
 namespace AtServer;
 
 
-use AtServer\Mongodb\MongodbEntity;
-use Log\Log;
+
 
 /**
  * mysql实体基类
@@ -52,7 +51,7 @@ class MysqlEntity extends Entity {
 	}
 
 	/**
-	 * @return \AtServer\Mongodb\Container|null|\AtServer\MysqlContainer
+	 * @return \AtServer\MysqlContainer|\DB\Mongodb\Container|null
 	 * @throws \AtServer\DBException
 	 */
 	function getContainer() {
@@ -181,7 +180,7 @@ class MysqlEntity extends Entity {
 	 * @return bool|mixed
 	 */
 	public function getInfoBy( $field, $filed_value ) {
-		$where['field'] = $filed_value;
+		$where[$field] = $filed_value;
 		$info = $this->getContainer()->getModel()->where( $where )->find();
 		if($info){
 			$this->setData( $info );

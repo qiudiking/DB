@@ -23,26 +23,11 @@ abstract class EntityFactoryBase {
 	 * @return mixed
 	 * @throws \AtServer\SystemException
 	 */
-	public static function instance( $class, $id = null, $is_instance = false ) {
+	public static function instance( $class, $id = null ) {
 		if ( ! class_exists( $class ) ) {
 			\AtServer\ThrowException::SystemException( \AtServer\ErrorHandler::CLASS_EXIST, $class . '类不存在' );
 		}
-		if ( $is_instance === true ) {
-			$instance = new $class( $id );
-		} else {
-			$instance = getArrVal( $class, self::$instanceList );
-		}
-		if ( ! $instance ) {
-			$instance                     = new $class( $id );
-			//self::$instanceList[ $class ] = $instance;
-		}else{
-			self::initEntity( $class, $instance );
-		}
-		if ( method_exists( $instance, 'init' ) ) {
-			$instance->init();
-		}
-
-		return $instance;
+		return new $class( $id );
 	}
 
 	/**
@@ -52,7 +37,6 @@ abstract class EntityFactoryBase {
 		foreach ( self::$instanceList as $obj ) {
 			unset( $obj );
 	    }
-
 	}
 
 	public static function initEntity($className,$obj){

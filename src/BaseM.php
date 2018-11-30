@@ -141,8 +141,8 @@ class BaseM extends IModelInterface {
 
 	/**
 	 * 获取当前页
-	 * @return int
-	 * @throws \Exception
+	 *
+	 * @return bool|null
 	 */
 	public function getCurrentPage() {
 		$page = (int) request_get( $this->_pageUrl_key );
@@ -174,8 +174,8 @@ class BaseM extends IModelInterface {
 
 	/**
 	 * 获取分页信息
+	 *
 	 * @return mixed
-	 * @throws \Exception
 	 */
 	public function getPageInfo() {
 		$info['current']     = $this->getCurrentPage();
@@ -186,6 +186,23 @@ class BaseM extends IModelInterface {
 
 		return $info;
 	}
+	/**
+	 * @param null $url
+	 *
+	 * @return $this
+	 */
+	/*function setPageUrl($url=null)
+	{
+		if($url){
+			$this->_pageUrl = $url;
+		}else{
+			$param= $_GET;
+			unset($param[$this->_pageUrl_key]);
+			$this->_pageUrl = Route::instance()->U('', $param);
+		}
+
+		return $this;
+	}*/
 
 
 	/**
@@ -251,7 +268,8 @@ class BaseM extends IModelInterface {
 
 	/**
 	 * 设置实体实例对象
-	 * @param \AtServer\MysqlEntity $mysqlEntity
+	 *
+	 * @param \DB\MysqlEntity $mysqlEntity
 	 *
 	 * @return $this
 	 */
@@ -1019,10 +1037,10 @@ class BaseM extends IModelInterface {
 
 	/**
 	 *  删除表的数据
-	 * @param null $where
 	 *
-	 * @return bool|int
-	 * @throws \AtServer\DBException
+	 * @param $where
+	 *
+	 * @return bool
 	 */
 	public function delete( $where = null ) {
 		if ( $where ) {

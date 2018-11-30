@@ -3,7 +3,8 @@
 namespace AtServer;
 
 
-
+use AtServer\Mongodb\MongodbEntity;
+use Log\Log;
 
 /**
  * mysql实体基类
@@ -51,7 +52,7 @@ class MysqlEntity extends Entity {
 	}
 
 	/**
-	 * @return \AtServer\MysqlContainer|\DB\Mongodb\Container|null
+	 * @return \AtServer\Mongodb\Container|null|\AtServer\MysqlContainer
 	 * @throws \AtServer\DBException
 	 */
 	function getContainer() {

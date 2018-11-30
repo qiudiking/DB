@@ -10,6 +10,7 @@ namespace AtServer\Connect;
 
 use AtServer\ErrorHandler;
 use AtServer\DBException;
+use Log\Log;
 
 
 class PDOConnect {
